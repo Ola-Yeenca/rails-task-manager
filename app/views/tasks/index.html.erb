@@ -1,0 +1,19 @@
+<h1>Bienvenido a TASKS</h1>
+
+<% @tasks.each do |task| %>
+  <ul>
+
+    <li > - <% if task.completed %>
+      <i class="fa-solid fa-square-check"></i>
+      <% else %>
+      <i class="fa-solid fa-square"></i>
+    <% end %><%= task.title %> - <%= task.details %></li>
+    <%= link_to task.title, task_path(task.id) %>
+    <%= link_to edit_task_path(task.id), class: 'btn btn-outline-secondary' do %>
+      <i class="fa fa-pencil"></i> Edit
+    <% end %>
+    <%= link_to task_path(task.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+          <i class="fa-solid fa-trash"></i>
+    <% end %>
+  </ul>
+<% end %>
